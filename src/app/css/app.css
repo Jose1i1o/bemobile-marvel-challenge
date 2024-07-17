@@ -1,0 +1,33 @@
+/* base files */
+@import "./base/reset.css";
+@import "./base/typography.css";
+@import "./base/variables.css";
+@import "./base/utils.css";
+
+/* layout files */
+@import "./layout/footer.css";
+@import "./layout/grid.css";
+@import "./layout/input.css";
+@import "./layout/navigation.css";
+
+/* module files */
+@import "./module/button.css";
+@import "./module/card.css";
+@import "./module/modal.css";
+
+/* state files */
+@import "./state/animations.css";
+@import "./state/state.css";
+
+/* theme files */
+@import "./theme/dark.css";
+@import "./theme/light.css";
+
+/* page files */
+@import "./pages/home.css";
+
+/* component files */
+@import "./components/search.css";
+
+/* container-queries files */
+@import "./container-queries/main.css";

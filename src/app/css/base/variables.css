@@ -1,0 +1,16 @@
+/* give me some examples here all the colors with variables */
+
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --success-color: #28a745;
+  --info-color: #17a2b8;
+  --warning-color: #ffc107;
+  --danger-color: #dc3545;
+  --light-color: #f8f9fa;
+  --dark-color: #343a40;
+  --background-color: #f8f9fa;
+  --text-color: #212529;
+  --link-color: #007bff;
+  --link-hover-color: #0056b3;
+}
