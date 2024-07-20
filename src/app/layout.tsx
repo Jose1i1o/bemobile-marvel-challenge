@@ -4,6 +4,15 @@ import "./css/app.css"
 
 const robotoCondensed = Roboto_Condensed({
   display: "swap",
+  subsets: [
+    "latin",
+    "latin-ext",
+    "vietnamese",
+    "cyrillic",
+    "cyrillic-ext",
+    "greek",
+    "greek-ext",
+  ],
 })
 
 export const metadata: Metadata = {
