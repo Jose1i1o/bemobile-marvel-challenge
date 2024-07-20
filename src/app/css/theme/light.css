@@ -1,0 +1,5 @@
+@import "../base/variables.css";
+
+.light-mode {
+  background-color: var(--light-color);
+}

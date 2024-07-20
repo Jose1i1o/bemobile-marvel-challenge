@@ -16,7 +16,7 @@
 @import "./module/modal.css";
 
 /* state files */
-@import "./state/animations.css";
+@import "./state/animations/navbar-animations.css";
 @import "./state/state.css";
 
 /* theme files */

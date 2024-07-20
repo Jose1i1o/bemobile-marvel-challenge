@@ -1,16 +1,34 @@
 /* give me some examples here all the colors with variables */
 
 :root {
-  --primary-color: #007bff;
+  --marvel-red: #ec1d24;
+  --light-color: hsl(0, 0%, 100%);
+  --dark-color: hsl(0, 0%, 0%);
+  --placeholder-color: hsl(0, 0%, 67%);
+
   --secondary-color: #6c757d;
   --success-color: #28a745;
   --info-color: #17a2b8;
   --warning-color: #ffc107;
   --danger-color: #dc3545;
-  --light-color: #f8f9fa;
-  --dark-color: #343a40;
   --background-color: #f8f9fa;
   --text-color: #212529;
   --link-color: #007bff;
   --link-hover-color: #0056b3;
+
+  --xxl-font-size: 40px;
+  --xl-font-size: 32px;
+  --lg-font-size: 28px;
+  --md-font-size: 24px;
+  --sm-font-size: 20px;
+  --xs-font-size: 16px;
+  --xxs-font-size: 14px;
+  --xxxs-font-size: 12px;
+
+  --xxl-weight-font-size: 700;
+  --xl-weight-font-size: 600;
+  --lg-weight-font-size: 500;
+  --md-weight-font-size: 400;
+  --sm-weight-font-size: 300;
+  --xs-weight-font-size: 200;
 }
