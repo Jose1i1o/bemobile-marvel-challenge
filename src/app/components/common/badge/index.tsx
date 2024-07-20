@@ -21,6 +21,7 @@ export const Badge: FC<BadgeProps> = ({
       {...props}
       target="_blank"
       title={tooltip}
+      style={{ textDecoration: "none", color: "inherit" }}
     />
   )
 }

@@ -27,6 +27,8 @@ const SearchInput: React.FC<Props> = () => {
           className="search__input"
           placeholder="SEARCH A CHARACTER..."
           aria-label="Search"
+          role="search"
+          tabIndex={3}
         />
       </div>
       <p className="search__results">50 RESULTS</p>

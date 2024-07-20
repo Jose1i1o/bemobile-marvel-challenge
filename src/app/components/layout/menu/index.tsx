@@ -1,5 +1,6 @@
 import React from "react"
 import { Badge } from "../../common/badge"
+import { menuItems } from "./routes"
 
 type NavbarProps = {
   isLoading: boolean
@@ -8,27 +9,18 @@ type NavbarProps = {
 const Navbar = ({ isLoading }: NavbarProps) => {
   return (
     <nav className={`navigation ${isLoading ? "navigation--loading" : ""}`}>
-      <Badge href="/home" tooltip="Return Home">
-        <svg
-          className="navigation__marvel-logo"
-          role="img"
-          aria-labelledby="marvel-icon-title"
+      {menuItems?.map((item) => (
+        <Badge
+          key={item.key}
+          href={item.path}
+          tooltip={item.description}
+          role={item.role}
+          tabIndex={item.tabIndex}
+          className="navigation__item"
         >
-          <use href="/sprite.svg#marvel-icon" />
-        </svg>
-      </Badge>
-      <section className="navigation__favourites-container">
-        <Badge href="/home" tooltip="Return Home">
-          <svg
-            className="navigation__favourites-icon"
-            role="img"
-            aria-labelledby="heart-icon-title"
-          >
-            <use href="/sprite.svg#heart-icon" />
-          </svg>
+          {item.icon}
         </Badge>
-        <span className="navigation__favourites-text">3</span>
-      </section>
+      ))}
     </nav>
   )
 }
