@@ -1,6 +1,5 @@
 /* base files */
 @import "./base/reset.css";
-@import "./base/typography.css";
 @import "./base/variables.css";
 @import "./base/utils.css";
 
@@ -8,6 +7,7 @@
 @import "./layout/footer.css";
 @import "./layout/grid.css";
 @import "./layout/input.css";
+@import "./layout/search.css";
 @import "./layout/navigation.css";
 
 /* module files */
@@ -27,7 +27,6 @@
 @import "./pages/home.css";
 
 /* component files */
-@import "./components/search.css";
 
 /* container-queries files */
 @import "./container-queries/main.css";

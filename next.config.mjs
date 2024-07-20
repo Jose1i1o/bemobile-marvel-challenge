@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 
 import withBundleAnalyzer from '@next/bundle-analyzer';
+import { hostname } from 'os';
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -11,6 +12,13 @@ const withAnalyzer = withBundleAnalyzer({
 const nextConfig = {
   reactStrictMode: true,
   images: {
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'i.annihil.us',
+        pathname: '/u/prod/marvel/**'
+      }
+    ],
     formats: ['image/avif', 'image/webp'],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 60,

@@ -1,0 +1,46 @@
+.card-layout__item {
+  width: 100%;
+  height: 245.97px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.card-layout__item-image {
+  width: 100%;
+  height: 189.97px;
+  object-fit: cover;
+  border-bottom: 4px solid var(--marvel-red);
+}
+
+.card-layout__item-footer {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 16px 24px 16px;
+  height: 56px;
+  color: var(--light-color);
+  background-color: var(--dark-color);
+  overflow: hidden;
+  clip-path: polygon(
+    0 0,
+    0 0,
+    100% 0,
+    100% 20%,
+    100% 70%,
+    90% 100%,
+    0 100%,
+    0 100%
+  );
+}
+
+.card-layout__item-name {
+  font-size: var(--xxs-font-size);
+  font-weight: var(--md-weight-font-size);
+}
+
+.card-layout__item-favourite {
+  width: 12px;
+  height: 10.84px;
+}

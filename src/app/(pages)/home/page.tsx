@@ -1,18 +1,14 @@
-import SearchInput from "@/app/components/common/inputs/search-input/search"
-import { Navbar } from "@/app/components/layout"
-import GridLayout from "@/app/components/layout/grid"
 import dynamic from "next/dynamic"
+import { Navbar } from "@/app/components/layout"
 
-const DynamicNavbar = dynamic(() => import("@/app/components/layout/menu"), {
+const HomePageBundle = dynamic(() => import("./components"), {
   loading: () => <Navbar isLoading={true} />,
 })
 
 export default function HomePage() {
   return (
     <>
-      <DynamicNavbar isLoading={false} />
-      <SearchInput />
-      <GridLayout />
+      <HomePageBundle />
     </>
   )
 }
