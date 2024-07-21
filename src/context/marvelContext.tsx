@@ -44,9 +44,8 @@ export const MarvelProvider: FC<PropsWithChildren> = ({ children }) => {
       const { data } = await getMarvelCharacters()
       setInitialArgs(data as any)
       setIsLoading(false)
-      if (typeof window !== "undefined") {
-        localStorage.setItem("marvelState", JSON.stringify(data))
-      }
+
+      localStorage.setItem("marvelState", JSON.stringify(data))
     }
     fetchInitialArgs()
   }, [])
@@ -58,16 +57,12 @@ export const MarvelProvider: FC<PropsWithChildren> = ({ children }) => {
   )
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("marvelState", JSON.stringify(marvelState))
-    }
+    localStorage.setItem("marvelState", JSON.stringify(marvelState))
   }, [marvelState])
 
   const handleSearch = async (search: string) => {
-    console.log("search", search)
     const searchResults = await searchMarvelCharacters(search)
-    console.log("searchResults", searchResults)
-    dispatch({ type: "SEARCH", payload: searchResults.data.toString() })
+    dispatch({ type: "SEARCH", payload: searchResults.data })
   }
 
   const handleAddToFavorites = (character: any) => {

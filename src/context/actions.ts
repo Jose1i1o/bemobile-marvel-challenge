@@ -4,7 +4,7 @@ type MarvelInitialState = any[] // Define your actual type here
 
 // Define union types for actions
 type MarvelActionType =
-  | { type: "SEARCH"; payload: string }
+  | { type: "SEARCH"; payload: {} }
   | { type: "ADD_TO_FAVORITES"; payload: any }
   | { type: "REMOVE_FROM_FAVORITES"; payload: any }
 

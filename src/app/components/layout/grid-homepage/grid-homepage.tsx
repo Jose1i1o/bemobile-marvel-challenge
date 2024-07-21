@@ -1,6 +1,7 @@
 import Image from "next/image"
 
 const GridLayout = ({ marvelState }: any) => {
+  console.log("marvelState", marvelState)
   if (marvelState.length === 0) {
     return (
       <section className="error-container">
