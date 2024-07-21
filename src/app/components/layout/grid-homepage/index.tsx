@@ -30,6 +30,7 @@ const GridLayout = async () => {
                 width={100}
                 height={100}
                 priority={true}
+                quality={100}
               />
               <div className="card-layout__item-footer">
                 <p className="card-layout__item-name" role="button">

@@ -7,7 +7,7 @@ import serverClient from "./serverAPI"
 
 export const getMarvelCharacters = async (): Promise<APICharactersResponse> => {
   try {
-    const response = await serverClient.get<MarvelAPI>(`${MY_PUBLIC_API}/api`, {
+    const response = await serverClient.get<MarvelAPI>("/api", {
       headers: {
         "Content-Type": "application/json",
       },

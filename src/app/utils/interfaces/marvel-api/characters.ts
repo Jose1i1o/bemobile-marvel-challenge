@@ -1,6 +1,7 @@
 export interface APICharactersResponse {
   status: number
   data: Data
+  mockResolvedValue?: any
 }
 
 export interface MarvelAPI {
@@ -14,7 +15,9 @@ export interface MarvelAPI {
 }
 
 export interface Data {
-  map(arg0: (character: any) => import("react").JSX.Element): import("react").ReactNode
+  map(
+    arg0: (character: any) => import("react").JSX.Element,
+  ): import("react").ReactNode
   offset: number
   limit: number
   total: number

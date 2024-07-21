@@ -1,6 +1,6 @@
 import SearchInput from "@/app/components/common/inputs/search-input/search"
 import { Navbar } from "@/app/components/layout"
-import GridLayout from "@/app/components/layout/grid"
+import GridLayout from "@/app/components/layout/grid-homepage"
 import React from "react"
 
 const HomePageBundle = () => {
