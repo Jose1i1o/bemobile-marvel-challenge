@@ -11,7 +11,6 @@ vi.mock("next/dynamic", () => {
     default: vi
       .fn()
       .mockImplementation((importFunc, { loading: LoadingComponent }) => {
-        console.log("Mock dynamic import called")
         const DynamicComponent: React.FC & { loading?: React.FC } = () => (
           <div>HomePageBundle</div>
         )
@@ -27,7 +26,6 @@ describe("HomePage", () => {
     // Override the mock implementation to use Navbar for loading state
     ;(dynamic as any).mockImplementation(
       (importFunc: any, { loading: LoadingComponent }: any) => {
-        console.log("Mock dynamic import override called")
         const DynamicComponent: React.FC & { loading?: React.FC } = () => (
           <div>HomePageBundle</div>
         )

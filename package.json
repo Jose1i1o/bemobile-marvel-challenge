@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@next/bundle-analyzer": "^14.2.5",
+    "@nextui-org/react": "^2.4.6",
     "@types/jest": "^29.5.12",
     "@types/md5": "^2.3.5",
     "axios": "^1.7.2",

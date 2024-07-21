@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { Roboto_Condensed } from "next/font/google"
 import "./css/app.css"
+import { Providers } from "./providers"
 
 const robotoCondensed = Roboto_Condensed({
   display: "swap",
@@ -34,7 +35,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" />
       </head>
       <body className={`light-mode ${robotoCondensed.className}`}>
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   )

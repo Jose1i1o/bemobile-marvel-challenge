@@ -38,6 +38,11 @@
 .card-layout__item-name {
   font-size: var(--xxs-font-size);
   font-weight: var(--md-weight-font-size);
+  width: 100%;
+  max-width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .card-layout__item-favourite {

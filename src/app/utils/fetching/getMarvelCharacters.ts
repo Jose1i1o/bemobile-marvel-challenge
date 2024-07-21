@@ -2,12 +2,11 @@ import {
   APICharactersResponse,
   MarvelAPI,
 } from "../interfaces/marvel-api/characters"
-import { MY_PUBLIC_API } from "../constants/variables"
 import serverClient from "./serverAPI"
 
-export const getMarvelCharacters = async (): Promise<APICharactersResponse> => {
+export const getMarvelCharacters = async (search: string): Promise<APICharactersResponse> => {
   try {
-    const response = await serverClient.get<MarvelAPI>("/api", {
+    const response = await serverClient.get<MarvelAPI>("/api/characters", {
       headers: {
         "Content-Type": "application/json",
       },
@@ -23,6 +22,6 @@ export const getMarvelCharacters = async (): Promise<APICharactersResponse> => {
       data: [] as any,
     }
   } finally {
-    console.log("getMarvelCharacters finally")
+    // console.log("getMarvelCharacters finally")
   }
 }

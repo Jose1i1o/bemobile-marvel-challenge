@@ -1,7 +1,6 @@
 import { defineConfig } from "cypress"
 import path from "path"
 import { MY_PUBLIC_VERCEL_URL } from "./src/app/utils/constants/variables"
-console.log(MY_PUBLIC_VERCEL_URL)
 
 module.exports = defineConfig({
   e2e: {

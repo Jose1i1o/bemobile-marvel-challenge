@@ -1,11 +1,36 @@
-import React from "react"
+"use client"
+
+import React, { ChangeEvent, FC, FormEvent, useState } from "react"
+import { searchMarvelCharacters } from "../../../../utils/fetching/searchMarvelCharacters"
+import { useMarvelContext } from "@/context/marvelContext"
 
 type Props = {}
 
-const SearchInput: React.FC<Props> = () => {
+const SearchInput: FC<Props> = () => {
+  const [formState, setFormState] = useState({
+    search: "",
+  })
+
+  const { marvelState, handleSearch } = useMarvelContext()
+
+  const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = target
+
+    setFormState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }))
+  }
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (!formState.search) return
+    handleSearch(formState.search)
+  }
+
   return (
     <section className="search" aria-labelledby="search-label">
-      <div className="search__input-wrapper">
+      <form className="search__input-wrapper" onSubmit={handleSubmit}>
         <label
           id="search-label"
           className="search__label"
@@ -29,9 +54,17 @@ const SearchInput: React.FC<Props> = () => {
           aria-label="Search"
           role="search"
           tabIndex={3}
+          name="search"
+          onChange={handleChange}
+          value={formState.search}
         />
-      </div>
-      <p className="search__results">50 RESULTS</p>
+      </form>
+      {marvelState?.length > 0 && (
+        <p className="search__results">
+          {marvelState?.length}{" "}
+          {marvelState?.length === 1 ? "RESULT" : "RESULTS"}
+        </p>
+      )}
     </section>
   )
 }

@@ -1,61 +1,16 @@
-import { getMarvelCharacters } from "@/app/utils/fetching/getMarvelCharacters"
-import Image from "next/image"
+"use client"
 
-const GridLayout = async () => {
-  const { status, data } = await getMarvelCharacters()
+import React, { FC } from "react"
+import GridLayout from "./grid-homepage"
+import { useMarvelContext } from "@/context/marvelContext"
 
-  if (status !== 200) {
-    return (
-      <section className="error-container">
-        <p className="error-message">Pow! Something crashed!</p>
-      </section>
-    )
-  }
+type Props = {}
 
-  return (
-    <>
-      <section className="container">
-        <span className="grid-layout">
-          {data ? (
-            data?.map(({ id, thumbnail: { path, extension }, name }: any) => (
-              <article
-                key={id}
-                className="card-layout__item"
-                role="gridcell"
-                tabIndex={id}
-              >
-                <Image
-                  src={`${path}.${extension}`}
-                  alt={name}
-                  className="card-layout__item-image"
-                  width={100}
-                  height={100}
-                  priority={true}
-                  quality={100}
-                />
-                <div className="card-layout__item-footer">
-                  <p className="card-layout__item-name" role="button">
-                    {name.toUpperCase()}
-                  </p>
-                  <svg
-                    className="card-layout__item-favourite"
-                    role="button"
-                    aria-labelledby="heart-icon-title"
-                  >
-                    <use href="/sprite.svg#heart-icon" />
-                  </svg>
-                </div>
-              </article>
-            ))
-          ) : (
-            <section className="error-container">
-              <p className="error-message">Zap! No heroes available!</p>
-            </section>
-          )}
-        </span>
-      </section>
-    </>
-  )
+const GridHomepage: FC<Props> = () => {
+  const { marvelState } = useMarvelContext()
+
+  // pass the marvelState to the grid layout as children so that we can use server-side rendering
+  return <GridLayout marvelState={marvelState} />
 }
 
-export default GridLayout
+export default GridHomepage
