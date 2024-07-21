@@ -7,7 +7,7 @@ import React, {
   useReducer,
   useState,
 } from "react"
-import { getMarvelCharacters } from "@/app/utils/fetching/getMarvelCharacters" // Adjust the path as necessary
+import { getMarvelCharacters } from "@/app/utils/fetching/getMarvelCharacters"
 import { marvelReducer } from "./actions"
 import { Navbar } from "@/app/components/layout"
 import { searchMarvelCharacters } from "@/app/utils/fetching/searchMarvelCharacters"
@@ -23,7 +23,7 @@ type MarvelContextProps = {
 // Create the context with an undefined initial value
 const MarvelContext = createContext<MarvelContextProps | undefined>(undefined)
 
-const init = (initialArgs: any[]) => {
+const init = (initialArgs: any) => {
   const storedData = localStorage.getItem("marvelState") || null
   if (storedData !== null) {
     return JSON.parse(storedData)
@@ -33,29 +33,33 @@ const init = (initialArgs: any[]) => {
 
 export const MarvelProvider: FC<PropsWithChildren> = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true)
-  const [initialArgs, setInitialArgs] = useState<any[]>([])
+  const [initialArgs, setInitialArgs] = useState(null)
 
   useEffect(() => {
     const fetchInitialArgs = async () => {
       const { data } = await getMarvelCharacters()
-      setInitialArgs(data)
+      setInitialArgs(data as any)
       setIsLoading(false)
       localStorage.setItem("marvelState", JSON.stringify(data))
     }
     fetchInitialArgs()
   }, [])
 
-  const [marvelState, dispatch] = useReducer(marvelReducer, initialArgs, init)
+  const [marvelState, dispatch] = useReducer(
+    marvelReducer,
+    initialArgs as never,
+    init as never,
+  )
 
   useEffect(() => {
     localStorage.setItem("marvelState", JSON.stringify(marvelState))
   }, [marvelState])
 
   const handleSearch = async (search: string) => {
-    console.log("search", search);
+    console.log("search", search)
     const searchResults = await searchMarvelCharacters(search)
-    console.log("searchResults", searchResults);
-    dispatch({ type: "SEARCH", payload: searchResults.data })
+    console.log("searchResults", searchResults)
+    dispatch({ type: "SEARCH", payload: searchResults.data.toString() })
   }
 
   const handleAddToFavorites = (character: any) => {

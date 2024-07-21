@@ -4,7 +4,7 @@ import {
 } from "../interfaces/marvel-api/characters"
 import serverClient from "./serverAPI"
 
-export const getMarvelCharacters = async (search: string): Promise<APICharactersResponse> => {
+export const getMarvelCharacters = async (): Promise<APICharactersResponse> => {
   try {
     const response = await serverClient.get<MarvelAPI>("/api/characters", {
       headers: {

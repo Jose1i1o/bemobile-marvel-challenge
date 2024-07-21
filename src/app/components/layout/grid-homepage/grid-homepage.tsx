@@ -1,13 +1,13 @@
 import Image from "next/image"
 
 const GridLayout = ({ marvelState }: any) => {
-  // if (status !== 200) {
-  //   return (
-  //     <section className="error-container">
-  //       <p className="error-message">Pow! Something crashed!</p>
-  //     </section>
-  //   )
-  // }
+  if (marvelState.length === 0) {
+    return (
+      <section className="error-container">
+        <p className="error-message">Pow! Something crashed!</p>
+      </section>
+    )
+  }
 
   return (
     <>
