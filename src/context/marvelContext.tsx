@@ -1,3 +1,5 @@
+"use client"
+
 import React, {
   createContext,
   FC,
@@ -23,10 +25,12 @@ type MarvelContextProps = {
 // Create the context with an undefined initial value
 const MarvelContext = createContext<MarvelContextProps | undefined>(undefined)
 
-const init = (initialArgs: any) => {
-  const storedData = localStorage.getItem("marvelState") || null
-  if (storedData !== null) {
-    return JSON.parse(storedData)
+const init = (initialArgs: any[]) => {
+  if (typeof window !== "undefined") {
+    const storedData = localStorage.getItem("marvelState")
+    if (storedData !== null) {
+      return JSON.parse(storedData)
+    }
   }
   return initialArgs
 }
@@ -40,7 +44,9 @@ export const MarvelProvider: FC<PropsWithChildren> = ({ children }) => {
       const { data } = await getMarvelCharacters()
       setInitialArgs(data as any)
       setIsLoading(false)
-      localStorage.setItem("marvelState", JSON.stringify(data))
+      if (typeof window !== "undefined") {
+        localStorage.setItem("marvelState", JSON.stringify(data))
+      }
     }
     fetchInitialArgs()
   }, [])
@@ -52,7 +58,9 @@ export const MarvelProvider: FC<PropsWithChildren> = ({ children }) => {
   )
 
   useEffect(() => {
-    localStorage.setItem("marvelState", JSON.stringify(marvelState))
+    if (typeof window !== "undefined") {
+      localStorage.setItem("marvelState", JSON.stringify(marvelState))
+    }
   }, [marvelState])
 
   const handleSearch = async (search: string) => {
