@@ -16,6 +16,11 @@ const nextConfig = {
         protocol: 'http',
         hostname: 'i.annihil.us',
         pathname: '/u/prod/marvel/**'
+      },
+      {
+        protocol: 'http',
+        hostname: 'gateway.marvel.com',
+        pathname: '/v1/public/comics/**'
       }
     ],
     // formats: ['image/avif', 'image/webp'],

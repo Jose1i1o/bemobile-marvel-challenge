@@ -13,6 +13,7 @@
 /* module files */
 @import "./module/button.css";
 @import "./module/card.css";
+@import "./module/detail-card.css";
 @import "./module/modal.css";
 
 /* state files */

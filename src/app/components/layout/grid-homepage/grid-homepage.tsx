@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 
 const GridLayout = ({ marvelState }: any) => {
   console.log("marvelState", marvelState)
@@ -17,7 +18,8 @@ const GridLayout = ({ marvelState }: any) => {
           {marvelState ? (
             marvelState?.map(
               ({ id, thumbnail: { path, extension }, name }: any) => (
-                <article
+                <Link
+                  href={`/heroes/${id}`}
                   key={id}
                   className="card-layout__item"
                   role="gridcell"
@@ -44,7 +46,7 @@ const GridLayout = ({ marvelState }: any) => {
                       <use href="/sprite.svg#heart-icon" />
                     </svg>
                   </div>
-                </article>
+                </Link>
               ),
             )
           ) : (
