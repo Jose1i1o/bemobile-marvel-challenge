@@ -7,8 +7,6 @@ import serverClient from "./serverAPI"
 export const getHeroById = async (
   id: string,
 ): Promise<APICharactersResponse> => {
-  console.log("entro en getHeroById")
-
   try {
     const response = await serverClient.get<MarvelAPI>(
       `/api/herodetail?characterId=${id}`,
@@ -18,13 +16,12 @@ export const getHeroById = async (
         },
       },
     )
-    console.log("getMarvelCharacter response", response)
     return {
       status: response.status,
       data: response.data.data,
     }
   } catch (error) {
-    console.error("getMarvelCharacters error", error)
+    console.error("getMarvelHeroDetail error", error)
     return {
       status: 500,
       data: [] as any,

@@ -2,7 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 
 const GridLayout = ({ marvelState }: any) => {
-  console.log("marvelState", marvelState)
+
   if (marvelState.length === 0) {
     return (
       <section className="error-container">
@@ -13,7 +13,7 @@ const GridLayout = ({ marvelState }: any) => {
 
   return (
     <>
-      <section className="container">
+      <section className="grid-container">
         <span className="grid-layout">
           {marvelState ? (
             marvelState?.map(
@@ -24,9 +24,10 @@ const GridLayout = ({ marvelState }: any) => {
                   className="card-layout__item"
                   role="gridcell"
                   tabIndex={id}
+                  style={{ textDecoration: "none", color: "inherit" }}
                 >
                   <Image
-                    src={`${path}.${extension}`}
+                    src={`${path}/portrait_fantastic.${extension}`}
                     alt={name}
                     className="card-layout__item-image"
                     width={100}
@@ -43,7 +44,7 @@ const GridLayout = ({ marvelState }: any) => {
                       role="button"
                       aria-labelledby="heart-icon-title"
                     >
-                      <use href="/sprite.svg#heart-icon" />
+                      <use href="/sprite.svg#heart-icon-unliked-home" />
                     </svg>
                   </div>
                 </Link>

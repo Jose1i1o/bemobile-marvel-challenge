@@ -40,7 +40,7 @@ export const menuItems: MenuItemProps[] = [
           role="img"
           aria-labelledby="heart-icon-title"
         >
-          <use href="/sprite.svg#heart-icon" />
+          <use href="/sprite.svg#heart-icon-liked" />
         </svg>
         <span className="navigation__favourites-text">3</span>
       </section>

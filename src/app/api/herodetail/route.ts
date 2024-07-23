@@ -3,14 +3,10 @@ import apiClient from "../../utils/fetching/marvelBaseURL"
 import { NextRequest, NextResponse } from "next/server"
 
 export async function GET(req: NextRequest, res: NextResponse) {
-  console.log("Entered GET server API for hero detail")
-
   try {
     const url = new URL(req.url)
-    console.log("Parsed URL:", url)
 
     const characterId = url.searchParams.get("characterId")
-    console.log("Character ID:", characterId)
 
     if (!characterId) {
       console.error("No character ID provided")
@@ -20,10 +16,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
       )
     }
 
-    console.log(`Fetching details for character ID: ${characterId}`)
-
     const response = await apiClient.get(`characters/${characterId}${QUERY}`)
-    console.log("API Response:", response)
 
     return NextResponse.json({
       data: response.data.data.results,

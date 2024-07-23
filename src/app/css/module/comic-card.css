@@ -1,0 +1,75 @@
+.hero-comics {
+  display: grid !important;
+  container-type: inline-size;
+  grid-template-columns: repeat(1, 1fr) !important;
+  grid-template-rows: 70px auto !important;
+  padding: 0px 16px 24px 16px;
+}
+
+.hero-comics__header-title {
+  font-size: var(--lg-font-size);
+  font-weight: var(--xl-weight-font-size);
+  color: var(--dark-color);
+  margin-bottom: 16px;
+}
+
+.hero-comics__slider {
+  display: flex;
+  justify-content: flex-start;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 12px;
+}
+
+.hero-comics__thumbnail-container {
+  min-height: 268.8px;
+}
+
+.hero-comics__item {
+  flex: 0 0 auto; /* Para que cada item tenga el mismo tamaño */
+  scroll-snap-align: start;
+  position: relative;
+  width: 179.2px;
+  margin-right: 12px;
+}
+
+.hero-comics__thumbnail {
+  width: 100%;
+  height: auto;
+  max-height: 268.8px;
+  object-fit: cover;
+  object-position: top;
+}
+
+.hero-comics__title {
+  margin-top: 8px;
+  font-size: var(--xs-font-size);
+  font-weight: var(--lg-weight-font-size);
+  color: var(--dark-color);
+  text-align: left;
+}
+
+.hero-comics__year {
+  margin-top: 4px;
+  font-size: var(--xxxs-font-size);
+  font-weight: var(--md-weight-font-size);
+  color: var(--secondary-color);
+  text-align: left;
+}
+
+@media (min-width: 1024px) {
+  .hero-comics {
+    display: grid !important;
+    grid-template-columns: repeat(6, 1fr) !important;
+    padding: 0;
+  }
+
+  .hero-comics__header-title {
+    grid-column: 2 / 3;
+  }
+
+  .hero-comics__slider {
+    grid-column: 2 / 6;
+    grid-row: 2;
+  }
+}

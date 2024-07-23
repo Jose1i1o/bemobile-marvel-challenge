@@ -13,8 +13,9 @@
 /* module files */
 @import "./module/button.css";
 @import "./module/card.css";
-@import "./module/detail-card.css";
+@import "./module/comic-card.css";
 @import "./module/modal.css";
+@import "./module/hero-card.css";
 
 /* state files */
 @import "./state/animations/navbar-animations.css";

@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 
+// swc error in console to be fixed in https://github.com/vercel/next.js/pull/66515
+
 import withBundleAnalyzer from '@next/bundle-analyzer';
 
 const isProd = process.env.NODE_ENV === 'production';
@@ -9,7 +11,7 @@ const withAnalyzer = withBundleAnalyzer({
 });
 
 const nextConfig = {
-  // reactStrictMode: true,
+  reactStrictMode: true,
   images: {
     remotePatterns: [
       {
@@ -23,9 +25,9 @@ const nextConfig = {
         pathname: '/v1/public/comics/**'
       }
     ],
-    // formats: ['image/avif', 'image/webp'],
-    // imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    // minimumCacheTTL: 60,
+    formats: ['image/avif', 'image/webp'],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    minimumCacheTTL: 60,
   },
   webpack: (config, { dev }) => {
     if (dev) {
@@ -46,7 +48,9 @@ const nextConfig = {
         'react-dom': 'preact/compat'
       },
       resolveExtensions: ['.tsx', '.ts', '.jsx', '.js', '.json', '.mdx', '.mjs']
-    }
+    },
+    ppr: 'incremental',
+    reactCompiler: true
   }
 };
 

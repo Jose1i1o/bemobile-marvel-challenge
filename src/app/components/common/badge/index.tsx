@@ -16,10 +16,10 @@ export const Badge: FC<BadgeProps> = ({
 }: BadgeProps) => {
   return (
     <Link
-      rel="preload"
+      rel="noopener noreferrer preload"
       href={href}
       {...props}
-      target="_blank"
+      // target="_blank"
       title={tooltip}
       style={{ textDecoration: "none", color: "inherit" }}
     />
