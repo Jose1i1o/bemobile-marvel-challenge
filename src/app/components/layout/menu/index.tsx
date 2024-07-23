@@ -1,4 +1,4 @@
-export const experimental_ppr = true
+// export const experimental_ppr = true
 
 import React from "react"
 import { Badge } from "../../common/badge"
@@ -7,7 +7,6 @@ import { menuItems } from "./routes"
 type NavbarProps = {
   isLoading: boolean
 }
-
 
 const Navbar = ({ isLoading }: NavbarProps) => {
   return (
