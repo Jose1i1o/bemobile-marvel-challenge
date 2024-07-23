@@ -49,7 +49,7 @@ const nextConfig = {
       },
       resolveExtensions: ['.tsx', '.ts', '.jsx', '.js', '.json', '.mdx', '.mjs']
     },
-    ppr: 'incremental',
+    // ppr: 'incremental',
     reactCompiler: true
   }
 };
