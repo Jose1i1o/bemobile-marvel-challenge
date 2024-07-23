@@ -4,7 +4,7 @@ import Image from "next/image"
 
 import { Navbar } from "@/app/components/layout"
 import { getHeroById } from "@/app/utils/fetching/getHeroById"
-import { HeroDetailPageProps } from "../[id]/page"
+import { HeroDetailPageProps } from "../page"
 
 const HeroDetail: React.FC<HeroDetailPageProps> = async ({
   params: { id },

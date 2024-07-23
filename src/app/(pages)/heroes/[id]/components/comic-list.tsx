@@ -1,6 +1,6 @@
 import { getHeroComics } from "@/app/utils/fetching/getHeroComics"
 import React from "react"
-import { HeroDetailPageProps } from "../[id]/page"
+import { HeroDetailPageProps } from "../page"
 import Image from "next/image"
 
 const ComicList: React.FC<HeroDetailPageProps> = async ({ params: { id } }) => {
