@@ -1,17 +1,19 @@
-import { getHeroComics } from "@/app/utils/fetching/getHeroComics"
 import React from "react"
-import { HeroDetailPageProps } from "../page"
 import Image from "next/image"
+
+import { getHeroComics } from "@/app/utils/fetching/getHeroComics"
+import { HeroDetailPageProps } from "../page"
 
 const ComicList: React.FC<HeroDetailPageProps> = async ({ params: { id } }) => {
   const { data: comics } = await getHeroComics(id)
+  console.log("comics", comics)
 
   return (
     <section className="hero-comics">
       <h3 className="hero-comics__header-title">COMICS</h3>
       <article className="hero-comics__slider">
         {comics ? (
-          comics?.map(({ title, dates, thumbnail }) => (
+          comics?.map(({ id, title, dates, thumbnail }) => (
             <div key={id} className="hero-comics__item">
               <div className="hero-comics__thumbnail-container">
                 <Image

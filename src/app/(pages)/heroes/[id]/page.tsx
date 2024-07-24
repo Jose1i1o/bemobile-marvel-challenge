@@ -1,8 +1,12 @@
 import { FC } from "react"
 import dynamic from "next/dynamic"
 
-const DynamicHeroDetail = dynamic(() => import("./components/hero-detail"))
-const DynamicComicList = dynamic(() => import("./components/comic-list"))
+const DynamicHeroDetail = dynamic(() => import("./components/hero-detail"), {
+  ssr: true
+})
+const DynamicComicList = dynamic(() => import("./components/comic-list"), {
+  ssr: true,
+})
 
 export type HeroDetailPageProps = {
   params: {
