@@ -1,10 +1,11 @@
+export const dynamic = "force-dynamic"
+
 import { QUERY } from "../../utils/fetching/queryParams"
 import apiClient from "../../utils/fetching/marvelBaseURL"
 import { NextRequest, NextResponse } from "next/server"
 
 export async function GET(req: NextRequest, res: NextResponse) {
-
-  console.log('req', req);
+  console.log("req", req)
   const maxComics = 20
   const comicList = []
 

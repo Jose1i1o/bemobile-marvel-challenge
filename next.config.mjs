@@ -11,7 +11,7 @@ const withAnalyzer = withBundleAnalyzer({
 });
 
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   images: {
     remotePatterns: [
       {
@@ -50,7 +50,7 @@ const nextConfig = {
       resolveExtensions: ['.tsx', '.ts', '.jsx', '.js', '.json', '.mdx', '.mjs']
     },
     // ppr: 'incremental',
-    reactCompiler: true
+    // reactCompiler: true
   }
 };
 

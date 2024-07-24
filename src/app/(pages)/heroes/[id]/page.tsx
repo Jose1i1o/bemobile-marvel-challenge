@@ -1,11 +1,13 @@
 import { FC } from "react"
 import dynamic from "next/dynamic"
 
+import { Navbar } from "@/app/components/layout"
+
 const DynamicHeroDetail = dynamic(() => import("./components/hero-detail"), {
-  ssr: true
+  loading: () => <Navbar isLoading={true} />,
 })
 const DynamicComicList = dynamic(() => import("./components/comic-list"), {
-  ssr: true,
+  loading: () => <p>Loading...</p>,
 })
 
 export type HeroDetailPageProps = {
