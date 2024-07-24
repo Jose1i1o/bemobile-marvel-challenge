@@ -3,6 +3,8 @@ import apiClient from "../../utils/fetching/marvelBaseURL"
 import { NextRequest, NextResponse } from "next/server"
 
 export async function GET(req: NextRequest, res: NextResponse) {
+
+  console.log('req', req);
   const maxComics = 20
   const comicList = []
 

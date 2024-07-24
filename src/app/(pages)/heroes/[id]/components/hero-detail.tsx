@@ -6,6 +6,8 @@ import { Navbar } from "@/app/components/layout"
 import { getHeroById } from "@/app/utils/fetching/getHeroById"
 import { HeroDetailPageProps } from "../page"
 
+export const dynamic = 'force-dynamic'
+
 const HeroDetail: React.FC<HeroDetailPageProps> = async ({
   params: { id },
 }) => {
@@ -22,7 +24,7 @@ const HeroDetail: React.FC<HeroDetailPageProps> = async ({
               description,
               thumbnail: { path, extension },
             }: any) => (
-              <section key={name} className="hero-card">
+              <section key={id} className="hero-card">
                 <Image
                   src={`${path}.${extension}`}
                   alt={name}
