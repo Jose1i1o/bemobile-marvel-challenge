@@ -1,14 +1,8 @@
+export const dynamic = "force-dynamic"
+
 import { FC } from "react"
-import dynamic from "next/dynamic"
-
-import { Navbar } from "@/app/components/layout"
-
-const DynamicHeroDetail = dynamic(() => import("./components/hero-detail"), {
-  loading: () => <Navbar isLoading={true} />,
-})
-const DynamicComicList = dynamic(() => import("./components/comic-list"), {
-  loading: () => <p>Loading...</p>,
-})
+import HeroDetail from "./components/hero-detail"
+import ComicList from "./components/comic-list"
 
 export type HeroDetailPageProps = {
   params: {
@@ -23,8 +17,8 @@ const HeroDetailPage: FC<HeroDetailPageProps> = async (props) => {
 
   return (
     <>
-      <DynamicHeroDetail params={{ id }} />
-      <DynamicComicList params={{ id }} />
+      <HeroDetail params={{ id }} />
+      <ComicList params={{ id }} />
     </>
   )
 }
