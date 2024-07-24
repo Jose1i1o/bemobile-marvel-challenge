@@ -1,3 +1,4 @@
+export const maxDuration = 260
 export const dynamic = "force-dynamic"
 export const revalidate = false
 
