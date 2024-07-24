@@ -1,3 +1,4 @@
+export const maxDuration = 300
 export const dynamicParams = true
 // export const experimental_ppr = true
 
@@ -7,7 +8,7 @@ import { Navbar } from "@/app/components/layout"
 import { getHeroById } from "@/app/utils/fetching/getHeroById"
 import { HeroDetailPageProps } from "../page"
 
-export const dynamic = 'force-dynamic'
+export const dynamic = "force-dynamic"
 
 const HeroDetail: React.FC<HeroDetailPageProps> = async ({
   params: { id },

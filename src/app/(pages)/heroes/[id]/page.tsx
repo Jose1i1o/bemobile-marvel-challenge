@@ -1,3 +1,4 @@
+export const maxDuration = 300
 export const dynamicParams = true
 
 import { FC } from "react"
