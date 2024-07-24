@@ -1,3 +1,5 @@
+export const dynamicParams = true
+
 import React from "react"
 import Image from "next/image"
 

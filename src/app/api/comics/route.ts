@@ -1,4 +1,5 @@
 export const dynamic = "force-dynamic"
+export const revalidate = false
 
 import { QUERY } from "../../utils/fetching/queryParams"
 import apiClient from "../../utils/fetching/marvelBaseURL"

@@ -1,3 +1,4 @@
+export const dynamicParams = true
 // export const experimental_ppr = true
 
 import Image from "next/image"
