@@ -1,5 +1,8 @@
 "use client"
 
+export const maxDuration = 300
+export const dynamicParams = true
+
 import React, { ChangeEvent, FC, FormEvent, useState } from "react"
 import { searchMarvelCharacters } from "../../../../utils/fetching/searchMarvelCharacters"
 import { useMarvelContext } from "@/context/marvelContext"
