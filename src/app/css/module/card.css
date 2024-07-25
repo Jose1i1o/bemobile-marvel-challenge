@@ -2,7 +2,7 @@
 
 .card-layout__item {
   width: 100%;
-  height: 245.97px;
+  height: 50vh
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -10,7 +10,7 @@
 
 .card-layout__item-image {
   width: 100%;
-  height: 189.97px;
+  height: 70%;
   object-fit: cover;
   object-position: top;
   border-bottom: 4px solid var(--marvel-red);
@@ -56,4 +56,22 @@
   width: 12px;
   height: 10.84px;
   margin: 20px 5px;
+}
+
+@media (min-width: 768px) {
+  .card-layout__item {
+    height: 30vh;
+  }
+}
+
+@media (min-width: 1024px) {
+  .card-layout__item {
+    height: 28vh;
+  }
+}
+
+@media (min-width: 1440px) {
+  .card-layout__item {
+    height: 45vh;
+  }
 }
