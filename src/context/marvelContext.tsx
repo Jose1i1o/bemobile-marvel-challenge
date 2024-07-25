@@ -31,49 +31,69 @@ type MarvelContextProps = {
 // Create the context with an undefined initial value
 const MarvelContext = createContext<MarvelContextProps | undefined>(undefined)
 
-const init = (initialArgs: any[]) => {
+const init = (): MarvelInitialState => {
   if (typeof window !== "undefined") {
     const storedData = localStorage.getItem("marvelState")
-    if (storedData !== null) {
+    if (storedData) {
       return JSON.parse(storedData)
     }
   }
-  return initialArgs
+  return {
+    results: [],
+    favorites: [],
+    filteredFavorites: [],
+  }
 }
 
 export const MarvelProvider: FC<PropsWithChildren> = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true)
-  const [initialArgs, setInitialArgs] = useState<MarvelInitialState>({
-    results: [],
-    favorites: [],
-    filteredFavorites: [],
-  })
-
-  useEffect(() => {
-    const fetchInitialArgs = async () => {
-      const { data } = await getMarvelCharacters()
-      setInitialArgs({
-        results: data.results,
-        favorites: [],
-        filteredFavorites: [],
-      })
-      setIsLoading(false)
-
-      localStorage.setItem(
-        "marvelState",
-        JSON.stringify({ results: data, favorites: [] }),
-      )
-    }
-    fetchInitialArgs()
-  }, [])
 
   const [marvelState, dispatch] = useReducer<
     React.Reducer<MarvelInitialState, MarvelActionType>
   >(
     marvelReducer as React.Reducer<MarvelInitialState, MarvelActionType>,
-    initialArgs,
-    init as never,
+    init(),
   )
+
+  useEffect(() => {
+    const fetchInitialArgs = async () => {
+      try {
+        const { data } = await getMarvelCharacters()
+        console.log("data initial state", data)
+        dispatch({
+          type: "INITIAL_STATE",
+          payload: {
+            results: data,
+            favorites: [],
+            filteredFavorites: [],
+          },
+        })
+        localStorage.setItem(
+          "marvelState",
+          JSON.stringify({
+            results: data.results,
+            favorites: [],
+            filteredFavorites: [],
+          }),
+        )
+      } catch (error) {
+        console.error("Error fetching initial data:", error)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+    fetchInitialArgs()
+  }, [])
+
+  useEffect(() => {
+    const fetchLocalStorage = () => {
+      const storedData = localStorage.getItem("marvelState")
+      if (storedData) {
+        dispatch({ type: "UPDATE_STATE", payload: JSON.parse(storedData) })
+      }
+    }
+    fetchLocalStorage()
+  }, [])
 
   useEffect(() => {
     localStorage.setItem("marvelState", JSON.stringify(marvelState))
@@ -96,7 +116,7 @@ export const MarvelProvider: FC<PropsWithChildren> = ({ children }) => {
       dispatch({ type: "SEARCH_FAVORITES", payload: [] })
       return
     }
-    const filteredResults = marvelState?.favorites.filter((item: any) => {
+    const filteredResults = marvelState?.favorites.filter((item) => {
       return item.name.toLowerCase().includes(search.toLowerCase())
     })
     dispatch({ type: "SEARCH_FAVORITES", payload: filteredResults })
@@ -127,7 +147,7 @@ export const MarvelProvider: FC<PropsWithChildren> = ({ children }) => {
   }
 
   const handleRemoveFromFavorites = (id: number) => {
-    const heroDetailToString = id.toString()
+    const heroDetailToString = id
     dispatch({ type: "REMOVE_FROM_FAVORITES", payload: heroDetailToString })
   }
 

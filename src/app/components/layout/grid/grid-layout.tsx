@@ -2,9 +2,10 @@ import Image from "next/image"
 import Link from "next/link"
 import FavouriteButton from "../../common/buttons/favourite-button"
 import { usePathname } from "next/navigation"
-import Navbar from "../menu"
 
 const GridLayout = ({ items, filters }: any) => {
+  console.log("items", items)
+  console.log("filters", filters)
   const router = usePathname()
   const isHome = router === "/home"
   const isFavorites = router === "/favorites"
