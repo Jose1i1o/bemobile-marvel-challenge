@@ -1,14 +1,27 @@
 import Image from "next/image"
 import Link from "next/link"
 import FavouriteButton from "../../common/buttons/favourite-button"
-import { text } from "stream/consumers"
+import { usePathname } from "next/navigation"
+import Navbar from "../menu"
 
 const GridLayout = ({ items, filters }: any) => {
-  if (items.length === 0) {
+  const router = usePathname()
+  const isHome = router === "/home"
+  const isFavorites = router === "/favorites"
+
+  if (isHome && items.length === 0) {
+    return (
+      <section className="loader-parent">
+        <div className="loading-text">Loading heroes</div>
+        <div className="loader"></div>
+      </section>
+    )
+  }
+  if (isFavorites && items.length === 0) {
     return (
       <section className="error-container">
         <p className="error-message">
-          Bam! No heroes found! Looks like they took a day off!
+          Bam! No heroes favorited! Looks like they took a day off!
         </p>
       </section>
     )

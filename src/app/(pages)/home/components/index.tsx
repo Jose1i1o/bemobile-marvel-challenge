@@ -8,6 +8,7 @@ const DynamicSearchInput = dynamic(
 
 const DynamicGridHome = dynamic(
   () => import("@/app/components/layout/grid/grid-home"),
+  { loading: () => <Navbar isLoading={true} /> },
 )
 
 const HomePageBundle = () => {
