@@ -20,31 +20,38 @@ const HeroDetail: React.FC<HeroDetailPageProps> = async ({
       <Navbar isLoading={false} />
       {data ? (
         <>
-          {data?.map(({ id, name, description, path, extension }: any) => (
-            <section key={id} className="hero-card">
-              <Image
-                src={`${path}.${extension}`}
-                alt={name}
-                className="hero-card__thumbnail"
-                width={100}
-                height={100}
-                priority={true}
-                quality={100}
-              />
-              <div className="hero-card__body">
-                <div className="hero-card__header">
-                  <h1>{name}</h1>
-                  <section className="hero-card__favourites" role="button">
-                    <FavouriteButton
-                      id={id}
-                      className="hero-card__favourites-icon"
-                    />
-                  </section>
+          {data?.map(
+            ({
+              id,
+              name,
+              description,
+              thumbnail: { path, extension },
+            }: any) => (
+              <section key={id} className="hero-card">
+                <Image
+                  src={`${path}.${extension}`}
+                  alt={name}
+                  className="hero-card__thumbnail"
+                  width={100}
+                  height={100}
+                  priority={true}
+                  quality={100}
+                />
+                <div className="hero-card__body">
+                  <div className="hero-card__header">
+                    <h1>{name}</h1>
+                    <section className="hero-card__favourites" role="button">
+                      <FavouriteButton
+                        id={id}
+                        className="hero-card__favourites-icon"
+                      />
+                    </section>
+                  </div>
+                  <p>{description || "Description not available."}</p>
                 </div>
-                <p>{description || "Description not available."}</p>
-              </div>
-            </section>
-          ))}
+              </section>
+            ),
+          )}
         </>
       ) : (
         <Navbar isLoading={true} />

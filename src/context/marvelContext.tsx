@@ -10,7 +10,7 @@ import React, {
   useState,
 } from "react"
 import { searchMarvelCharacters } from "@/app/utils/fetching/searchMarvelCharacters"
-import { MarvelInitialState, marvelReducer } from "./actions"
+import { MarvelActionType, MarvelInitialState, marvelReducer } from "./actions"
 import { Navbar } from "@/app/components/layout"
 import { getMarvelCharacters } from "../app/utils/fetching/getMarvelCharacters"
 import { getHeroById } from "../app/utils/fetching/getHeroById"
@@ -63,11 +63,11 @@ export const MarvelProvider: FC<PropsWithChildren> = ({ children }) => {
     fetchInitialArgs()
   }, [])
 
-  const [marvelState, dispatch] = useReducer(
-    marvelReducer,
-    initialArgs as never,
-    init as never,
-  )
+  const [marvelState, dispatch] = useReducer<React.Reducer<MarvelInitialState, MarvelActionType>>(
+    marvelReducer as React.Reducer<MarvelInitialState, MarvelActionType>,
+    initialArgs,
+    init as never
+  );
 
   useEffect(() => {
     localStorage.setItem("marvelState", JSON.stringify(marvelState))
@@ -86,7 +86,7 @@ export const MarvelProvider: FC<PropsWithChildren> = ({ children }) => {
   }
 
   const handleSearchFavorites = async (search: string) => {
-    const filteredResults = marvelState?.favorites.filter((item: string) => {
+    const filteredResults = marvelState?.favorites.filter((item: any) => {
       return item.name.toLowerCase().includes(search.toLowerCase())
     })
     dispatch({ type: "SEARCH_FAVORITES", payload: filteredResults })

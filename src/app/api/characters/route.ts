@@ -1,3 +1,6 @@
+export const maxDuration = 300
+export const revalidate = false
+
 import { QUERY } from "../../utils/fetching/queryParams"
 import apiClient from "../../utils/fetching/marvelBaseURL"
 import { NextRequest, NextResponse } from "next/server"

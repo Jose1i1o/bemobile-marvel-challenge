@@ -5,11 +5,16 @@ export type MarvelInitialState = {
 }
 
 // Define union types for actions
-type MarvelActionType =
+export type MarvelActionType =
   | { type: "SEARCH"; payload: {} }
   | { type: "ADD_TO_FAVORITES"; payload: any }
   | { type: "REMOVE_FROM_FAVORITES"; payload: any }
   | { type: "SEARCH_FAVORITES"; payload: any }
+
+type CharacterProps = {
+  id: number
+  name: string
+}
 
 export const marvelReducer = (
   state: MarvelInitialState,
@@ -28,16 +33,20 @@ export const marvelReducer = (
 
       const filteredFavorites = newFavorites.filter(
         (newHero) =>
-          !state.favorites.some((character) => character.id === newHero.id),
+          !state.favorites.some(
+            (character: CharacterProps) => character.id === newHero.id,
+          ),
       )
       return {
         ...state,
         favorites: [...state.favorites, ...filteredFavorites],
       }
     case "REMOVE_FROM_FAVORITES":
-      const updatedFavorites = state.favorites.filter((character) => {
-        return character.id !== parseInt(action.payload)
-      })
+      const updatedFavorites = state.favorites.filter(
+        (character: CharacterProps) => {
+          return character.id !== parseInt(action.payload)
+        },
+      )
       return {
         ...state,
         favorites: updatedFavorites,

@@ -17,8 +17,8 @@ const ResultsCounter = (props: Props) => {
   const count = isHome
     ? results.length
     : isFavorites
-      ? filteredFavorites.length
-      : favorites.length
+      ? favorites.length
+      : filteredFavorites.length
   const countLabel = count === 1 ? "RESULT" : "RESULTS"
 
   return (
