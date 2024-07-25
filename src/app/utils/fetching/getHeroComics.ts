@@ -14,8 +14,6 @@ export const getHeroComics = async (
       },
     })
 
-    console.log("getHeroComics response", response)
-
     return {
       status: response.data.status,
       data: response.data.data,

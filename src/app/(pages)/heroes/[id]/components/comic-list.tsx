@@ -10,7 +10,6 @@ import { HERO_TITLE_DETAIL_HERO } from "@/app/utils/constants/variables"
 
 const ComicList: React.FC<HeroDetailPageProps> = async ({ params: { id } }) => {
   const { data: comics } = await getHeroComics(id)
-  console.log("comics", comics)
 
   return (
     <section className="hero-comics">

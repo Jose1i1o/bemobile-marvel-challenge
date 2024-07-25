@@ -31,6 +31,6 @@ export async function GET(req: NextRequest, res: NextResponse) {
   } catch (error) {
     return NextResponse.json(error as any, { status: 500 })
   } finally {
-    // console.log("fetchCharacters finally")
+    console.log("fetchCharacters finally")
   }
 }

@@ -15,10 +15,10 @@ const ResultsCounter = (props: Props) => {
   const isFavorites = router === "/favorites"
 
   const count = isHome
-    ? results.length
+    ? results?.length || 0
     : isFavorites
-      ? favorites.length
-      : filteredFavorites.length
+      ? favorites?.length || 0
+      : filteredFavorites?.length || 0
   const countLabel = count === 1 ? "RESULT" : "RESULTS"
 
   return (

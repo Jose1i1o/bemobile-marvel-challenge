@@ -52,7 +52,11 @@ export const MarvelProvider: FC<PropsWithChildren> = ({ children }) => {
   useEffect(() => {
     const fetchInitialArgs = async () => {
       const { data } = await getMarvelCharacters()
-      setInitialArgs({ results: data.results, favorites: [], filteredFavorites: [] })
+      setInitialArgs({
+        results: data.results,
+        favorites: [],
+        filteredFavorites: [],
+      })
       setIsLoading(false)
 
       localStorage.setItem(
@@ -63,11 +67,13 @@ export const MarvelProvider: FC<PropsWithChildren> = ({ children }) => {
     fetchInitialArgs()
   }, [])
 
-  const [marvelState, dispatch] = useReducer<React.Reducer<MarvelInitialState, MarvelActionType>>(
+  const [marvelState, dispatch] = useReducer<
+    React.Reducer<MarvelInitialState, MarvelActionType>
+  >(
     marvelReducer as React.Reducer<MarvelInitialState, MarvelActionType>,
     initialArgs,
-    init as never
-  );
+    init as never,
+  )
 
   useEffect(() => {
     localStorage.setItem("marvelState", JSON.stringify(marvelState))
@@ -86,6 +92,10 @@ export const MarvelProvider: FC<PropsWithChildren> = ({ children }) => {
   }
 
   const handleSearchFavorites = async (search: string) => {
+    if (search === "") {
+      dispatch({ type: "SEARCH_FAVORITES", payload: [] })
+      return
+    }
     const filteredResults = marvelState?.favorites.filter((item: any) => {
       return item.name.toLowerCase().includes(search.toLowerCase())
     })
@@ -94,13 +104,25 @@ export const MarvelProvider: FC<PropsWithChildren> = ({ children }) => {
 
   const handleAddToFavorites = async (id: number) => {
     const heroDetailToString = id.toString()
-    try {
-      const { data } = await getHeroById(heroDetailToString)
-      dispatch({ type: "ADD_TO_FAVORITES", payload: data })
-    } catch (error) {
-      console.error("Error adding character to favorites:", error)
-    } finally {
-      setIsLoading(false)
+
+    const existingHero = marvelState.results.find((hero: any) => {
+      return hero.id === id
+    })
+
+    if (existingHero) {
+      dispatch({ type: "ADD_TO_FAVORITES", payload: existingHero })
+      return
+    }
+
+    if (!existingHero) {
+      try {
+        const { data } = await getHeroById(heroDetailToString)
+        dispatch({ type: "ADD_TO_FAVORITES", payload: data })
+      } catch (error) {
+        console.error("Error adding character to favorites:", error)
+      } finally {
+        setIsLoading(false)
+      }
     }
   }
 

@@ -10,8 +10,6 @@ const FavouritesCounter: FC<Props> = () => {
     marvelState: { favorites },
   } = useMarvelContext()
 
-  console.log("favorites", favorites)
-
   return (
     <span className="navigation__favourites-text">{favorites?.length}</span>
   )

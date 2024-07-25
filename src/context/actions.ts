@@ -52,6 +52,12 @@ export const marvelReducer = (
         favorites: updatedFavorites,
       }
     case "SEARCH_FAVORITES":
+      if (action.payload === "") {
+        return {
+          ...state,
+          filteredFavorites: state.favorites,
+        }
+      }
       return {
         ...state,
         filteredFavorites: action.payload,

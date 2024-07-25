@@ -10,9 +10,7 @@ import ResultsCounter from "../../counter/results-counter"
 type Props = {}
 
 const SearchInputFavorites: FC<Props> = () => {
-  const {
-    handleSearchFavorites,
-  } = useMarvelContext()
+  const { handleSearchFavorites } = useMarvelContext()
   const [formState, setFormState] = useState({
     search: "",
   })
@@ -29,9 +27,11 @@ const SearchInputFavorites: FC<Props> = () => {
   }
 
   useEffect(() => {
-    if (search.length <= 2) return
+    if (search === "") {
+      handleSearchFavorites("")
+    }
 
-    console.log("search", search)
+    if (search.length >= 1 && search.length <= 2) return
 
     const delayDebounceFn = setTimeout(() => {
       handleSearchFavorites(search)

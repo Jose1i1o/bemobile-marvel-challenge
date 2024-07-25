@@ -10,7 +10,14 @@ const DynamicHeroDetail = dynamic(() => import("./components/hero-detail"), {
   loading: () => <Navbar isLoading={true} />,
 })
 
-const DynamicComicList = dynamic(() => import("./components/comic-list"))
+const DynamicComicList = dynamic(() => import("./components/comic-list"), {
+  loading: () => (
+    <section className="loader-parent">
+      <div className="loading-text">Loading comics</div>
+      <div className="loader"></div>
+    </section>
+  ),
+})
 
 export type HeroDetailPageProps = {
   params: {

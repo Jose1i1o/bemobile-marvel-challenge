@@ -1,6 +1,6 @@
-/** @type {import('next').NextConfig} */
+// ppr and reactcompiler commented as per swc error in console to be fixed in https://github.com/vercel/next.js/pull/66515
 
-// swc error in console to be fixed in https://github.com/vercel/next.js/pull/66515
+/** @type {import('next').NextConfig} */
 
 import withBundleAnalyzer from '@next/bundle-analyzer';
 
@@ -54,5 +54,4 @@ const nextConfig = {
   }
 };
 
-// export default withAnalyzer(nextConfig);
-export default nextConfig;
+export default withAnalyzer(nextConfig);
