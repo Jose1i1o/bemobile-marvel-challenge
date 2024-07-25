@@ -1,12 +1,15 @@
-import { searchMarvelCharacters } from "@/app/utils/fetching/searchMarvelCharacters"
-
-type MarvelInitialState = any[] // Define your actual type here
+export type MarvelInitialState = {
+  results: any[]
+  favorites: any[]
+  filteredFavorites: any[]
+}
 
 // Define union types for actions
 type MarvelActionType =
   | { type: "SEARCH"; payload: {} }
   | { type: "ADD_TO_FAVORITES"; payload: any }
   | { type: "REMOVE_FROM_FAVORITES"; payload: any }
+  | { type: "SEARCH_FAVORITES"; payload: any }
 
 export const marvelReducer = (
   state: MarvelInitialState,
@@ -14,11 +17,36 @@ export const marvelReducer = (
 ) => {
   switch (action.type) {
     case "SEARCH":
-      return action.payload
+      return {
+        ...state,
+        results: action.payload,
+      }
     case "ADD_TO_FAVORITES":
-      return [...state, action.payload]
+      const newFavorites = Array.isArray(action.payload)
+        ? action.payload
+        : [action.payload]
+
+      const filteredFavorites = newFavorites.filter(
+        (newHero) =>
+          !state.favorites.some((character) => character.id === newHero.id),
+      )
+      return {
+        ...state,
+        favorites: [...state.favorites, ...filteredFavorites],
+      }
     case "REMOVE_FROM_FAVORITES":
-      return state.filter((character) => character.id !== action.payload.id)
+      const updatedFavorites = state.favorites.filter((character) => {
+        return character.id !== parseInt(action.payload)
+      })
+      return {
+        ...state,
+        favorites: updatedFavorites,
+      }
+    case "SEARCH_FAVORITES":
+      return {
+        ...state,
+        filteredFavorites: action.payload,
+      }
     default:
       return state
   }

@@ -22,8 +22,21 @@ export async function GET(req: NextRequest, res: NextResponse) {
 
     const response = await apiClient.get(`characters/${characterId}${QUERY}`)
 
+    const heroData = response.data.data.results[0]
+
+    const heroFilteredData = {
+      id: heroData.id,
+      name: heroData.name,
+      description: heroData.description,
+      thumbnail: {
+        path: heroData.thumbnail.path,
+        extension: heroData.thumbnail.extension,
+      },
+    }
+    const heroDataArray = [heroFilteredData]
+
     return NextResponse.json({
-      data: response.data.data.results,
+      data: heroDataArray,
       status: response.status,
     })
   } catch (error) {

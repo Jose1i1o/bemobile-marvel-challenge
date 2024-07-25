@@ -3,14 +3,16 @@
 export const maxDuration = 300
 export const dynamicParams = true
 
-import React, { ChangeEvent, FC, FormEvent, useEffect, useState } from "react"
+import React, { ChangeEvent, FC, useEffect, useState } from "react"
 import { useMarvelContext } from "../../../../../context/marvelContext"
 import ResultsCounter from "../../counter/results-counter"
 
 type Props = {}
 
-const SearchInputHome: FC<Props> = () => {
-  const { handleSearch } = useMarvelContext()
+const SearchInputFavorites: FC<Props> = () => {
+  const {
+    handleSearchFavorites,
+  } = useMarvelContext()
   const [formState, setFormState] = useState({
     search: "",
   })
@@ -29,14 +31,15 @@ const SearchInputHome: FC<Props> = () => {
   useEffect(() => {
     if (search.length <= 2) return
 
-    const delayDebounceFn = setTimeout(() => {
-      handleSearch(search)
-    }, 800)
+    console.log("search", search)
 
+    const delayDebounceFn = setTimeout(() => {
+      handleSearchFavorites(search)
+    }, 800)
     return () => {
       clearTimeout(delayDebounceFn)
     }
-  }, [search, handleSearch])
+  }, [search])
 
   return (
     <section className="search" aria-labelledby="search-label">
@@ -77,4 +80,4 @@ const SearchInputHome: FC<Props> = () => {
   )
 }
 
-export default SearchInputHome
+export default SearchInputFavorites

@@ -1,6 +1,6 @@
 "use client"
 
-import { MarvelProvider } from "@/context/marvelContext"
+import { MarvelProvider } from "../context/marvelContext"
 import { NextUIProvider } from "@nextui-org/react"
 
 export function Providers({ children }: { children: React.ReactNode }) {

@@ -21,7 +21,7 @@
   display: flex;
   align-items: center;
   margin: 16px;
-  padding: 8px;
+  padding: 8px 16px;
   gap: 8px;
 }
 
@@ -31,6 +31,8 @@
 }
 
 .navigation__favourites-text {
+  position: absolute;
+  right: 24px;
   font-size: var(--xs-font-size);
   font-weight: var(--md-weight-font-size);
 }

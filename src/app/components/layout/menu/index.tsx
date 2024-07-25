@@ -3,6 +3,7 @@
 import React from "react"
 import { Badge } from "../../common/badge"
 import { menuItems } from "./routes"
+import FavouritesCounter from "../../common/counter/favourites-counter"
 
 type NavbarProps = {
   isLoading: boolean
@@ -18,11 +19,11 @@ const Navbar = ({ isLoading }: NavbarProps) => {
           tooltip={item.description}
           role={item.role}
           tabIndex={item.tabIndex}
-          className="navigation__item"
         >
           {item.icon}
         </Badge>
       ))}
+      {!isLoading ? <FavouritesCounter /> : null}
     </nav>
   )
 }

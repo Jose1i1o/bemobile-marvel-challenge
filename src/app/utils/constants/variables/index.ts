@@ -5,3 +5,6 @@ export const MARVEL_API = process.env.MARVEL_API
 export const API_TIMEOUT = process.env.API_TIMEOUT
 export const MY_PUBLIC_VERCEL_URL = process.env.MY_PUBLIC_VERCEL_URL
 export const DEFAULT_LIMIT = process.env.DEFAULT_LIMIT
+
+export const HERO_TITLE_DETAIL_HERO = "COMICS"
+export const HERO_TITLE_FAVORITES_PAGE = "FAVORITES"

@@ -6,6 +6,7 @@ import Image from "next/image"
 
 import { getHeroComics } from "@/app/utils/fetching/getHeroComics"
 import { HeroDetailPageProps } from "../page"
+import { HERO_TITLE_DETAIL_HERO } from "@/app/utils/constants/variables"
 
 const ComicList: React.FC<HeroDetailPageProps> = async ({ params: { id } }) => {
   const { data: comics } = await getHeroComics(id)
@@ -13,7 +14,7 @@ const ComicList: React.FC<HeroDetailPageProps> = async ({ params: { id } }) => {
 
   return (
     <section className="hero-comics">
-      <h3 className="hero-comics__header-title">COMICS</h3>
+      <h3 className="hero-comics__header-title">{HERO_TITLE_DETAIL_HERO}</h3>
       <article className="hero-comics__slider">
         {comics ? (
           comics?.map(({ id, title, dates, thumbnail }) => (

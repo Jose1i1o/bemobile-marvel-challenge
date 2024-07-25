@@ -29,7 +29,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src",
-    "cypress"
+    "cypress",
+    "src/context"
   ],
   "exclude": ["node_modules"]
 }

@@ -10,6 +10,14 @@
   background-color: var(--dark-color);
 }
 
+.hero__header-title {
+  font-size: var(--xl-font-size);
+  font-weight: var(--xl-weight-font-size);
+  line-height: 37.5px;
+  margin: 24px 0 16px 16px;
+  text-transform: uppercase;
+}
+
 .hero-card__item {
   display: contents;
 }

@@ -27,6 +27,6 @@ export const searchMarvelCharacters = async (
       data: [] as any,
     }
   } finally {
-    console.log("searchMarvelCharacters finally")
+    // console.log("searchMarvelCharacters finally")
   }
 }

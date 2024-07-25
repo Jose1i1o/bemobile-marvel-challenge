@@ -9,17 +9,23 @@ import React, {
   useReducer,
   useState,
 } from "react"
-import { getMarvelCharacters } from "@/app/utils/fetching/getMarvelCharacters"
-import { marvelReducer } from "./actions"
-import { Navbar } from "@/app/components/layout"
 import { searchMarvelCharacters } from "@/app/utils/fetching/searchMarvelCharacters"
+import { MarvelInitialState, marvelReducer } from "./actions"
+import { Navbar } from "@/app/components/layout"
+import { getMarvelCharacters } from "../app/utils/fetching/getMarvelCharacters"
+import { getHeroById } from "../app/utils/fetching/getHeroById"
 
-// Define the type for the context
 type MarvelContextProps = {
-  marvelState: any[]
+  marvelState: {
+    results: any[]
+    favorites: any[]
+    filteredFavorites: any[]
+  }
   handleSearch: (search: string) => void
-  handleAddToFavorites: (character: any) => void
+  handleAddToFavorites: (herodetail: any) => void
   handleRemoveFromFavorites: (character: any) => void
+  handleSearchFavorites: (search: string) => void
+  loading: boolean
 }
 
 // Create the context with an undefined initial value
@@ -37,15 +43,22 @@ const init = (initialArgs: any[]) => {
 
 export const MarvelProvider: FC<PropsWithChildren> = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true)
-  const [initialArgs, setInitialArgs] = useState(null)
+  const [initialArgs, setInitialArgs] = useState<MarvelInitialState>({
+    results: [],
+    favorites: [],
+    filteredFavorites: [],
+  })
 
   useEffect(() => {
     const fetchInitialArgs = async () => {
       const { data } = await getMarvelCharacters()
-      setInitialArgs(data as any)
+      setInitialArgs({ results: data.results, favorites: [], filteredFavorites: [] })
       setIsLoading(false)
 
-      localStorage.setItem("marvelState", JSON.stringify(data))
+      localStorage.setItem(
+        "marvelState",
+        JSON.stringify({ results: data, favorites: [] }),
+      )
     }
     fetchInitialArgs()
   }, [])
@@ -61,16 +74,39 @@ export const MarvelProvider: FC<PropsWithChildren> = ({ children }) => {
   }, [marvelState])
 
   const handleSearch = async (search: string) => {
-    const searchResults = await searchMarvelCharacters(search)
-    dispatch({ type: "SEARCH", payload: searchResults.data })
+    setIsLoading(true)
+    try {
+      const searchResults = await searchMarvelCharacters(search)
+      dispatch({ type: "SEARCH", payload: searchResults.data })
+    } catch (error) {
+      console.error("Error fetching character details:", error)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
-  const handleAddToFavorites = (character: any) => {
-    dispatch({ type: "ADD_TO_FAVORITES", payload: character })
+  const handleSearchFavorites = async (search: string) => {
+    const filteredResults = marvelState?.favorites.filter((item: string) => {
+      return item.name.toLowerCase().includes(search.toLowerCase())
+    })
+    dispatch({ type: "SEARCH_FAVORITES", payload: filteredResults })
   }
 
-  const handleRemoveFromFavorites = (character: any) => {
-    dispatch({ type: "REMOVE_FROM_FAVORITES", payload: character })
+  const handleAddToFavorites = async (id: number) => {
+    const heroDetailToString = id.toString()
+    try {
+      const { data } = await getHeroById(heroDetailToString)
+      dispatch({ type: "ADD_TO_FAVORITES", payload: data })
+    } catch (error) {
+      console.error("Error adding character to favorites:", error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const handleRemoveFromFavorites = (id: number) => {
+    const heroDetailToString = id.toString()
+    dispatch({ type: "REMOVE_FROM_FAVORITES", payload: heroDetailToString })
   }
 
   if (isLoading) {
@@ -81,9 +117,11 @@ export const MarvelProvider: FC<PropsWithChildren> = ({ children }) => {
     <MarvelContext.Provider
       value={{
         marvelState,
+        loading: isLoading,
         handleSearch,
         handleAddToFavorites,
         handleRemoveFromFavorites,
+        handleSearchFavorites,
       }}
     >
       {children}

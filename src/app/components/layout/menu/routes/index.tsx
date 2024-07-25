@@ -1,5 +1,3 @@
-import { Badge } from "@/app/components/common/badge"
-
 export type MenuItemProps = {
   key: number
   path: string
@@ -30,7 +28,7 @@ export const menuItems: MenuItemProps[] = [
   },
   {
     key: 1,
-    path: "/favourites",
+    path: "/favorites",
     tabIndex: 2,
     role: "button",
     icon: (
@@ -42,7 +40,6 @@ export const menuItems: MenuItemProps[] = [
         >
           <use href="/sprite.svg#heart-icon-liked" />
         </svg>
-        <span className="navigation__favourites-text">3</span>
       </section>
     ),
     title: "Favourites",
