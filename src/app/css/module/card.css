@@ -80,3 +80,9 @@
     object-position: center;
   }
 }
+
+@media (min-width: 1200px) {
+  .card-layout__item {
+    height: 35vh;
+  }
+}
