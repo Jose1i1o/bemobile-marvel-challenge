@@ -27,9 +27,9 @@ const HeroDetail: React.FC<HeroDetailPageProps> = async ({
               description,
               thumbnail: { path, extension },
             }: any) => (
-              <section key={id} className="hero-card">
+              <section key={id} className="hero-card" tabIndex={id}>
                 <Image
-                  src={`${path}.${extension}`}
+                  src={`${path}/portrait_incredible.${extension}`}
                   alt={name}
                   className="hero-card__thumbnail"
                   width={100}

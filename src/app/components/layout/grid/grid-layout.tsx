@@ -1,9 +1,9 @@
 import Image from "next/image"
 import Link from "next/link"
 import FavouriteButton from "../../common/buttons/favourite-button"
+import { text } from "stream/consumers"
 
 const GridLayout = ({ items, filters }: any) => {
-
   if (items.length === 0) {
     return (
       <section className="error-container">
@@ -26,14 +26,15 @@ const GridLayout = ({ items, filters }: any) => {
                     <Link
                       href={`/heroes/${id}`}
                       key={id}
-                      role="gridcell"
                       tabIndex={id}
+                      role="gridcell"
                       style={{ textDecoration: "none", color: "inherit" }}
                     >
                       <Image
                         src={`${path}/portrait_fantastic.${extension}`}
                         alt={name}
                         className="card-layout__item-image"
+                        role="button"
                         width={100}
                         height={100}
                         priority={true}
@@ -47,6 +48,7 @@ const GridLayout = ({ items, filters }: any) => {
                       <FavouriteButton
                         id={id}
                         className="card-layout__item-favourite"
+                        tabIndex={id + 1}
                       />
                     </div>
                   </article>

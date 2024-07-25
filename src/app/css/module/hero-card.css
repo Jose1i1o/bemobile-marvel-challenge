@@ -103,6 +103,8 @@
 
   .hero-card__thumbnail {
     height: auto;
+    object-fit: contain;
+    object-position: top;
   }
 }
 

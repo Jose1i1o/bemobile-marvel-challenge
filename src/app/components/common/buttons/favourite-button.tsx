@@ -6,9 +6,10 @@ import React from "react"
 type Props = {
   id: number
   className?: string
+  tabIndex?: number
 }
 
-const FavouriteButton = ({ id, className }: Props) => {
+const FavouriteButton = ({ id, className, tabIndex }: Props) => {
   const {
     marvelState: { favorites },
     handleAddToFavorites,
@@ -25,6 +26,7 @@ const FavouriteButton = ({ id, className }: Props) => {
         role="button"
         aria-labelledby="heart-icon-title"
         onClick={() => handleRemoveFromFavorites(id)}
+        tabIndex={tabIndex}
       >
         <use href="/sprite.svg#heart-icon-liked" />
       </svg>
@@ -37,6 +39,7 @@ const FavouriteButton = ({ id, className }: Props) => {
       role="button"
       aria-labelledby="heart-icon-title"
       onClick={() => handleAddToFavorites(id)}
+      tabIndex={tabIndex}
     >
       <use href="/sprite.svg#heart-icon-unliked" />
     </svg>

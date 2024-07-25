@@ -17,7 +17,7 @@ const ComicList: React.FC<HeroDetailPageProps> = async ({ params: { id } }) => {
       <article className="hero-comics__slider">
         {comics ? (
           comics?.map(({ id, title, dates, thumbnail }) => (
-            <div key={id} className="hero-comics__item">
+            <div key={id} className="hero-comics__item" tabIndex={id}>
               <div className="hero-comics__thumbnail-container">
                 <Image
                   src={thumbnail}

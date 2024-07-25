@@ -16,6 +16,10 @@
   border-bottom: 4px solid var(--marvel-red);
 }
 
+.card-layout__item-link:focus {
+  outline: 2px solid var(--marvel-red);
+}
+
 .card-layout__item-footer {
   position: relative;
   display: flex;
