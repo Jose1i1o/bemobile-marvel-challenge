@@ -59,7 +59,7 @@ export const MarvelProvider: FC<PropsWithChildren> = ({ children }) => {
     const fetchInitialArgs = async () => {
       try {
         const { data } = await getMarvelCharacters()
-        console.log("data initial state", data)
+        // console.log("data initial state", data)
         dispatch({
           type: "INITIAL_STATE",
           payload: {

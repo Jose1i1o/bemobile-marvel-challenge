@@ -9,12 +9,11 @@ type Props = {}
 const GridHomepage: FC<Props> = () => {
   const {
     marvelState: { results },
+    loading,
   } = useMarvelContext()
 
-  console.log("results", results)
-
   // pass the marvelState to the grid layout as children so that we can use server-side rendering
-  return <GridLayout items={results} />
+  return <GridLayout items={results} loading={loading} />
 }
 
 export default GridHomepage

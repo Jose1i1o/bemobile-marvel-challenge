@@ -9,10 +9,17 @@ type Props = {}
 const GridFavoritesPage: FC<Props> = () => {
   const {
     marvelState: { favorites, filteredFavorites },
+    loading,
   } = useMarvelContext()
 
   // pass the marvelState to the grid layout as children so that we can use server-side rendering
-  return <GridLayout items={favorites} filters={filteredFavorites}/>
+  return (
+    <GridLayout
+      items={favorites}
+      filters={filteredFavorites}
+      loading={loading}
+    />
+  )
 }
 
 export default GridFavoritesPage

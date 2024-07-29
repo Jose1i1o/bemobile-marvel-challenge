@@ -63,7 +63,7 @@ const SearchInputFavorites: FC<Props> = () => {
           </span>
         </label>
         <input
-          type="search"
+          type="text"
           id="search-input"
           className="search__input"
           placeholder="SEARCH A CHARACTER..."

@@ -3,14 +3,14 @@ import Link from "next/link"
 import FavouriteButton from "../../common/buttons/favourite-button"
 import { usePathname } from "next/navigation"
 
-const GridLayout = ({ items, filters }: any) => {
-  console.log("items", items)
-  console.log("filters", filters)
+const GridLayout = ({ items, filters, loading }: any) => {
+  // console.log("items", items)
+  // console.log("filters", filters)
   const router = usePathname()
   const isHome = router === "/home"
   const isFavorites = router === "/favorites"
 
-  if (isHome && items.length === 0) {
+  if (loading === true) {
     return (
       <section className="loader-parent">
         <div className="loading-text">Loading heroes</div>
@@ -18,6 +18,15 @@ const GridLayout = ({ items, filters }: any) => {
       </section>
     )
   }
+
+  if (isHome && items.length === 0) {
+    return (
+      <section className="error-container">
+        <p className="error-message">Zap! No heroes found!</p>
+      </section>
+    )
+  }
+
   if (isFavorites && items.length === 0) {
     return (
       <section className="error-container">
